@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_vertical"
+            android:title="Vertical" />
+        <item
+            android:id="@+id/menu_horizontal"
+            android:title="Horizontal" />
+        <item
+            android:id="@+id/menu_grid_2"
+            android:title="Grillas de 2 columnas" />
+        <item
+            android:id="@+id/menu_grid_3"
+            android:title="Grillas de 3 columnas" />
+    </group>
+</menu>
