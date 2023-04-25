@@ -78,6 +78,7 @@
         app:layout_constraintHorizontal_bias="0.647"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etDinero"
+
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button

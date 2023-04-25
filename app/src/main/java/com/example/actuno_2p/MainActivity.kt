@@ -52,8 +52,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         Log.d("PREFERENCIAS", "onResume")
-        if(TextUtils.isEmpty(nombre)){
-            val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
+        val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
+        val switchActivado = miSharedPreferences.getBoolean(SWITCH, false)
+        if (switchActivado) {
             nombre = miSharedPreferences.getString(NOMBRE, "").toString()
             edad = miSharedPreferences.getInt(EDAD, 0)
             altura = miSharedPreferences.getFloat(ALTURA, 0.0f)
@@ -86,6 +87,23 @@ class MainActivity : AppCompatActivity() {
         etDinero = findViewById(R.id.etDinero)
         swPrefe = findViewById(R.id.swPrefe)
         btContinuar = findViewById(R.id.btContinuar)
+        swPrefe.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
+                val editor = miSharedPreferences.edit()
+                editor.putString(NOMBRE, nombre)
+                editor.putInt(EDAD, edad)
+                editor.putFloat(ALTURA, altura)
+                editor.putFloat(DINERO, dinero)
+                editor.putBoolean(SWITCH, true)
+                editor.apply()
+            } else {
+                val miSharedPreferences = getSharedPreferences("PERSISTENCIA", MODE_PRIVATE)
+                val editor = miSharedPreferences.edit()
+                editor.putBoolean(SWITCH, false)
+                editor.apply()
+            }
+        }
         btContinuar.setOnClickListener {
             nombre = etNombre.text.toString()
             edad = etEdad.text.toString().toInt()
